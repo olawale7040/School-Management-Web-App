@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SchoolMgtWebApp.Models;
 
 namespace SchoolMgtWebApp.Data
 {
@@ -11,6 +12,21 @@ namespace SchoolMgtWebApp.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-        }
+
+         }
+        public DbSet<Faculty> Faculty { get; set; }
+
+        public DbSet<Department> Department { get; set; }
+
+        public DbSet<Course> Course { get; set; }
+
+
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+
+        public DbSet<Student> Student { get; set; }
+
+
+
+
     }
 }

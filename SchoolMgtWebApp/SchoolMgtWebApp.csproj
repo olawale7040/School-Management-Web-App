@@ -13,4 +13,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Admin\Courses\" />
+    <Folder Include="Pages\Admin\Departments\" />
+    <Folder Include="Pages\Admin\Students\" />
+    <Folder Include="Pages\Students\" />
+    <Folder Include="Utilitis\" />
+    <Folder Include="Repository\IRepository\" />
+  </ItemGroup>
+
 </Project>
