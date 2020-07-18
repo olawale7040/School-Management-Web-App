@@ -19,7 +19,6 @@
     <Folder Include="Pages\Admin\Students\" />
     <Folder Include="Pages\Students\" />
     <Folder Include="Utilitis\" />
-    <Folder Include="Repository\IRepository\" />
   </ItemGroup>
 
 </Project>

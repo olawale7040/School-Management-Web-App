@@ -12,6 +12,8 @@ using SchoolMgtWebApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SchoolMgtWebApp.Repository.IRepository;
+using SchoolMgtWebApp.Repository;
 
 namespace SchoolMgtWebApp
 {
@@ -33,6 +35,10 @@ namespace SchoolMgtWebApp
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+            services.AddScoped<IStudent, StudentRepository>();
+            services.AddScoped<ICourse, CourseRepository>();
+            services.AddScoped<IFaculty, FacultyRepository>();
+            services.AddScoped<IDepartment, DepartmentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
