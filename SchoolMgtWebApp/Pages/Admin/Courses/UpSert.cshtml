@@ -1,0 +1,87 @@
+﻿@page
+@model SchoolMgtWebApp.Pages.Admin.Courses.UpSertModel
+@{
+    ViewData["Title"] = "UpSert";
+}
+
+
+
+<h1>
+    @(Model.CourseVM.Course.Id != 0 ? "Update Course" : "Add Course")
+</h1>
+<form asp-action="Upsert" method="post">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhite border">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="col-md-12 px-3" style="border-bottom:solid 1px #325d88;">
+                @if (Model.CourseVM.Course.Id != 0)
+                {
+                    <input type="hidden" asp-for="CourseVM.Course.Id" />
+                }
+            </div>
+            <div class="col-md-8 pt-3">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="CourseVM.Course.CourseCode"></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" asp-for="CourseVM.Course.CourseCode" class="form-control" />
+                        <span class="text-danger" asp-validation-for="CourseVM.Course.CourseCode"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="CourseVM.Course.CourseTitle"></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" asp-for="CourseVM.Course.CourseTitle" class="form-control" />
+                        <span class="text-danger" asp-validation-for="CourseVM.Course.CourseTitle"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="CourseVM.Course.CourseUnit"></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" asp-for="CourseVM.Course.CourseUnit" class="form-control" />
+                        <span class="text-danger" asp-validation-for="CourseVM.Course.CourseUnit"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="CourseVM.Course.Semester"></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" asp-for="CourseVM.Course.Semester" class="form-control" />
+                        <span class="text-danger" asp-validation-for="CourseVM.Course.Semester"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="CourseVM.Course.DeptId"></label>
+                    </div>
+                    <div class="col-9">
+                        @Html.DropDownListFor(m => m.CourseVM.Course.DeptId,
+                                            Model.CourseVM.Department,
+                                            "-Select Faculty-",
+                                            new { @class = "form-control" })
+                        <span class="text-danger" asp-validation-for="CourseVM.Course.DeptId"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary form-control">@(Model.CourseVM.Course.Id != 0 ? "Update" : "Create")</button>
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-success form-control">Back To list </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

@@ -1,0 +1,49 @@
+﻿@page
+@model SchoolMgtWebApp.Pages.Admin.Faculties.UpSertModel
+@{
+    ViewData["Title"] = "UpSert";
+}
+
+
+<h1>
+    @(Model.CreateObj.Id != 0 ? "Update Faculty" : "Add Faculty")
+</h1>
+<form asp-action="Upsert" method="post">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhite border">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="col-md-12 px-3">
+                @if (Model.CreateObj.Id != 0)
+                {
+                    <input type="hidden" asp-for="CreateObj.Id" />
+                }
+            </div>
+            <div class="col-md-8 pt-3">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="CreateObj.Name"></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" asp-for="CreateObj.Name" class="form-control" />
+                        <span class="text-danger" asp-validation-for="CreateObj.Name"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary form-control">@(Model.CreateObj.Id != 0 ? "Update" : "Create")</button>
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-success form-control">Back To list </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+

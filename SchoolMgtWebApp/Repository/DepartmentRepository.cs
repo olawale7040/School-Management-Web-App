@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SchoolMgtWebApp.Data;
 using SchoolMgtWebApp.Models;
 using SchoolMgtWebApp.Repository.IRepository;
@@ -89,6 +90,16 @@ namespace SchoolMgtWebApp.Repository
             var objFromDb = _db.Department.FirstOrDefault(c => c.Id == department.Id);
             objFromDb.Name = department.Name;
             objFromDb.FacultyId = department.FacultyId;
+        }
+
+        public IEnumerable<SelectListItem> GetDepartmentListOfDropDown()
+        {
+            var deptList = _db.Department.Select(u => new SelectListItem()
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+            return deptList;
         }
     }
 }

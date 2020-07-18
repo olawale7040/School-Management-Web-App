@@ -34,7 +34,11 @@ namespace SchoolMgtWebApp
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddRazorPages();
+           // services.AddRazorPages();
+            services.AddMvc(options => options.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+            services.AddControllersWithViews();
+
             services.AddScoped<IStudent, StudentRepository>();
             services.AddScoped<ICourse, CourseRepository>();
             services.AddScoped<IFaculty, FacultyRepository>();
@@ -59,15 +63,11 @@ namespace SchoolMgtWebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            app.UseMvc();
         }
     }
 }

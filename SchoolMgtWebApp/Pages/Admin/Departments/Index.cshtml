@@ -1,0 +1,36 @@
+﻿@page
+@model SchoolMgtWebApp.Pages.Admin.Departments.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="border container backgroundWhite">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-primary">List of Departments</h2>
+        </div>
+        <div class="col-md-6 text-right">
+            <a asp-page="UpSert" class="btn btn-primary">
+                <i class="fas fa-plus"></i> &nbsp;
+                Add New Department
+            </a>
+        </div>
+    </div>
+    <br />
+    <table id="dataLoad" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Faculty</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section scripts{
+    <script src="~/js/depts.js"></script>
+}
+
+

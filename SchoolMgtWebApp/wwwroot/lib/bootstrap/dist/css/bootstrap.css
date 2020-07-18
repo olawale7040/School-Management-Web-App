@@ -70,7 +70,7 @@ body {
     line-height: 1.5;
     color: #839496;
     text-align: left;
-    background-color: #002B36;
+    /*background-color: #002B36;*/
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -11946,3 +11946,20 @@ a.text-dark:hover, a.text-dark:focus {
 .alert-light .alert-link {
     color: #002B36;
 }
+
+.bg-success .dropdown-menu {
+    background-color: #2AA198;
+}
+
+
+    .bg-success .dropdown-menu .dropdown-item,
+    .bg-success .dropdown-menu .dropdown-item:focus {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+        .bg-success .dropdown-menu .dropdown-item.active,
+        .bg-success .dropdown-menu .dropdown-item:hover,
+        .bg-success .dropdown-menu .dropdown-item:focus {
+            background-color: #0079a1;
+            color: #fff;
+        }

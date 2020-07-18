@@ -1,4 +1,5 @@
-﻿using SchoolMgtWebApp.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SchoolMgtWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,9 @@ namespace SchoolMgtWebApp.Repository.IRepository
         void Update(Department department);
 
         void Save();
+
+        IEnumerable<SelectListItem> GetDepartmentListOfDropDown();
+
 
     }
 }
