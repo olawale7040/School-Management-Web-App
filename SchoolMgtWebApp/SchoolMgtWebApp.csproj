@@ -17,8 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Admin\Students\" />
-    <Folder Include="Pages\Students\" />
-    <Folder Include="Utilitis\" />
+    <Folder Include="wwwroot\images\photos\" />
   </ItemGroup>
 
 </Project>

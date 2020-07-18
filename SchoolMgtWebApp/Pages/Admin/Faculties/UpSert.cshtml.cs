@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SchoolMgtWebApp.Models;
 using SchoolMgtWebApp.Repository.IRepository;
+using SchoolMgtWebApp.Utilitis;
 
 namespace SchoolMgtWebApp.Pages.Admin.Faculties
 {
+    [Authorize(Roles = SD.AdminRole)]
     public class UpSertModel : PageModel
     {
         private readonly IFaculty _facultyRepo;

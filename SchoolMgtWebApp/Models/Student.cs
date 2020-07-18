@@ -32,10 +32,12 @@ namespace SchoolMgtWebApp.Models
         [Required]
         public string Level { get; set; }
 
-        public String ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
 
         [NotMapped]
         [ForeignKey("ApplicationUserId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public string Image { get; set; }
     }
 }

@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SchoolMgtWebApp.Models;
 using SchoolMgtWebApp.Models.ViewModal;
 using SchoolMgtWebApp.Repository.IRepository;
+using SchoolMgtWebApp.Utilitis;
 
 namespace SchoolMgtWebApp.Pages.Admin.Departments
 {
+    [Authorize(Roles = SD.AdminRole)]
     public class UpSertModel : PageModel
     {
         private IDepartment _deptRepo;

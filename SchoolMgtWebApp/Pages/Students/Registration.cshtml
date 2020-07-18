@@ -1,0 +1,105 @@
+﻿@page
+@model SchoolMgtWebApp.Pages.Students.RegistrationModel
+@{
+    ViewData["Title"] = "Registration";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Student Registration Page</div>
+                <div class="card-body">
+                    <form asp-action="Registration" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                            <input type="hidden" asp-for="StudentVM.Student.Id" />
+                            <input type="hidden" asp-for="StudentVM.Student.ApplicationUserId" />
+                        <div class="form-group">
+                            <label asp-for="StudentVM.Student.FirstName" class="cols-sm-2 control-label"></label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" asp-for="StudentVM.Student.FirstName" class="form-control" placeholder="Enter your Name" />
+                                    <span class="text-danger" asp-validation-for="StudentVM.Student.FirstName"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StudentVM.Student.LastName" class="cols-sm-2 control-label"></label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" asp-for="StudentVM.Student.LastName" class="form-control" placeholder="Enter your Name" />
+                                    <span class="text-danger" asp-validation-for="StudentVM.Student.LastName"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StudentVM.Student.MatricNo" class="cols-sm-2 control-label"></label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" asp-for="StudentVM.Student.MatricNo" class="form-control" placeholder="Enter your Name" />
+                                    <span class="text-danger" asp-validation-for="StudentVM.Student.MatricNo"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StudentVM.Student.Level" class="cols-sm-2 control-label"></label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <select asp-for="StudentVM.Student.Level"
+                                            class="form-control">
+                                        <option>-select-</option>
+                                        <option value="100">100</option>
+                                        <option value="200">200</option>
+                                        <option value="300">300</option>
+                                        <option value="400">400</option>
+                                        <option value="500">500</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="StudentVM.Student.Level"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StudentVM.Student.DeptId" class="cols-sm-2 control-label"></label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    @Html.DropDownListFor(m => m.StudentVM.Student.DeptId,
+                                                                                Model.StudentVM.Department,
+                                                                                "-Select Faculty-",
+                                                                                new { @class = "form-control" })
+                                    <span class="text-danger" asp-validation-for="StudentVM.Student.DeptId"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StudentVM.Student.Image" class="cols-sm-2 control-label"></label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="file" name="files" id="uploadBox" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit" onclick="return validateInput()" class="btn btn-primary btn-lg btn-block login-button">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function validateInput(){
+            if (document.getElementById("uploadBox").value == ""){
+                swal("Error", "Please select an image", "error");
+                return false;
+            }
+                return true;
+
+        }
+    </script>
+}
+

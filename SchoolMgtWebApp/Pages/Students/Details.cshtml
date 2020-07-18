@@ -1,0 +1,54 @@
+﻿@page
+@model SchoolMgtWebApp.Pages.Students.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad">
+            <div class="card border-success">
+                <div class="bg-success card-header text-white">
+                    <h3 class="card-title">@Model.StudentInfo.FirstName  @Model.StudentInfo.LastName  </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 " align="center">
+                            <img alt="User Pic" style="width:200px;height:200px;" src="@Model.StudentInfo.Image" class="img-circle img-responsive">
+                            <a  asp-page="CourseRegistration" asp-route-deptId="@Model.StudentInfo.Id" class="btn btn-primary mt-3">Course Registration</a>
+                        </div>
+                        <div class=" col-md-8 col-lg-8 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>
+                                        <td>Department:</td>
+                                        <td>@Model.StudentInfo.Department.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Level</td>
+                                        <td>@Model.StudentInfo.Level</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Matric No.</td>
+                                        <td>@Model.StudentInfo.MatricNo</td>
+                                    </tr>
+                                    <tr>
+                                    
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-success text-white">
+                        <p></p>
+                        <p></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

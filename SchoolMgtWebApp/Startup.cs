@@ -32,9 +32,11 @@ namespace SchoolMgtWebApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-           // services.AddRazorPages();
+            // services.AddRazorPages();
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
             services.AddControllersWithViews();
@@ -43,6 +45,7 @@ namespace SchoolMgtWebApp
             services.AddScoped<ICourse, CourseRepository>();
             services.AddScoped<IFaculty, FacultyRepository>();
             services.AddScoped<IDepartment, DepartmentRepository>();
+            services.AddScoped<IApplicationUser, ApplicationUserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
