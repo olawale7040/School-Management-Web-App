@@ -74,7 +74,7 @@ namespace SchoolMgtWebApp.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
-            public int PhoneNumber { get; set; }
+            public string PhoneNumber { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -96,10 +96,10 @@ namespace SchoolMgtWebApp.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
-                    PhoneNumber = Input.PhoneNumber.ToString()
+                    PhoneNumber = Input.PhoneNumber
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                if (!await _roleManager.RoleExistsAsync(SD.StudentRole))
+                if (!await _roleManager.RoleExistsAsync(SD.AdminRole))
                 {
                     _roleManager.CreateAsync(new IdentityRole(SD.StudentRole)).GetAwaiter().GetResult();
                     _roleManager.CreateAsync(new IdentityRole(SD.AdminRole)).GetAwaiter().GetResult();

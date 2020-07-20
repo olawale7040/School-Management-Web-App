@@ -25,7 +25,10 @@ namespace SchoolMgtWebApp.Data
 
         public DbSet<Student> Student { get; set; }
 
+
+
         public DbSet<CourseRegistered> CourseRegistered { get; set; }
+
 
 
 

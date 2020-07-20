@@ -1,30 +1,28 @@
 ﻿var dataTable;
 
 $(function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('deptId');
-    handleDataTable(myParam)
+    handleDataTable()
 }
 )
-function handleDataTable(myParam) {
+function handleDataTable() {
     dataTable = $("#dataLoad").DataTable({
         "ajax": {
-            url: "/api/courseReg?deptId=" + myParam,
+            url: "/api/student",
             type: "Get",
             dataType: "json"
         },
         "columns": [
-            { data: "courseCode", width: "20%" },
-            { data: "courseTitle", width: "20%" },
-            { data: "courseUnit", width: "15%" },
-            { data: "semester", width: "15%" },
+            { data: "firstName", width: "15%" },
+            { data: "matricNo", width: "15%" },
+            { data: "department.name", width: "20%" },
+            { data: "level", width: "20%" },
             {
                 data: "id",
                 render: function (data) {
                     return `
                         <div>
-                              <a  onclick=Delete('/api/d/courseReg'+${data}) class="btn btn-success text-white" style="cursor:pointer;">
-                                <i class="fas fa-edit"></i> Add
+                                <a onclick=Delete('/api/student/'+${data}) class="btn btn-danger text-white" style="cursor:pointer;">
+                                <i class="fas fa-trash-alt"></i> Delete
                                 </a>
                          </div>
 `

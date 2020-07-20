@@ -10,15 +10,16 @@
         <!-- Tabs Titles -->
         <!-- Icon -->
         <div class="fadeIn first">
-            <img src="https://www.b-cube.in/wp-content/uploads/2014/05/aditya-300x177.jpg" id="icon" alt="User Icon" />
             <h1>School Management</h1>
         </div>
 
         <!-- Login Form -->
         <form id="account" method="post">
             <input type="email" id="login" asp-for="Input.Email" class="fadeIn second" placeholder="username" />
+            <br />
             <span asp-validation-for="Input.Email" class="text-danger"></span>
             <input asp-for="Input.Password" id="password" class="fadeIn third" placeholder="password" />
+            <br />
             <span asp-validation-for="Input.Password" class="text-danger"></span>
             <button type="submit" class="fadeIn fourth btn_submit">Log in</button>
         </form>

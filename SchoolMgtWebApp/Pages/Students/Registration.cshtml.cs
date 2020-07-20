@@ -50,11 +50,20 @@ namespace SchoolMgtWebApp.Pages.Students
                 };
                 var claimIdentity = (ClaimsIdentity)this.User.Identity;
                 var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                var user = _appUser.GetFisrtOrDefault(a=>a.Id== claim.Value);
-                StudentVM.Student.FirstName = user.FirstName;
-                StudentVM.Student.LastName = user.LastName;
-                StudentVM.Student.ApplicationUserId = user.Id;
-                return Page();
+
+                var studentFromDb = _studentRepo.GetFisrtOrDefault(s => s.ApplicationUserId == claim.Value);
+                if (studentFromDb != null)
+                {
+                    return RedirectToPage("Details");
+                }
+                else
+                {
+                    var user = _appUser.GetFisrtOrDefault(a => a.Id == claim.Value);
+                    StudentVM.Student.FirstName = user.FirstName;
+                    StudentVM.Student.LastName = user.LastName;
+                    StudentVM.Student.ApplicationUserId = user.Id;
+                    return Page();
+                }
             }
         }
 
@@ -80,7 +89,7 @@ namespace SchoolMgtWebApp.Pages.Students
                 StudentVM.Student.Image = @"\images\photos\" + fileName + extention;
                 _studentRepo.Add(StudentVM.Student);
                 _studentRepo.Save();
-                return RedirectToPage("./Index");
+                return RedirectToPage("Details");
             }
             }
     }

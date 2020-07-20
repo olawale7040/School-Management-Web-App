@@ -14,12 +14,12 @@ using SchoolMgtWebApp.Utilitis;
 namespace SchoolMgtWebApp.Pages.Students
 {
     [Authorize(Roles = SD.StudentRole)]
-    public class CourseRegistrationModel : PageModel
+    public class RegisteredCoursesModel : PageModel
     {
         private readonly ICourseRegistered _courseRegRepo;
         private readonly ICourse _courseRepo;
         private readonly IStudent _studentRepo;
-        public CourseRegistrationModel(ICourseRegistered courseRegRepo, ICourse courseRepo, IStudent studentRepo)
+        public RegisteredCoursesModel(ICourseRegistered courseRegRepo, ICourse courseRepo, IStudent studentRepo)
         {
             _courseRegRepo = courseRegRepo;
             _courseRepo = courseRepo;
@@ -27,42 +27,32 @@ namespace SchoolMgtWebApp.Pages.Students
         }
 
         [BindProperty]
-        public CourseRegViewModel CourseRegVM { get; set; }
-        public IActionResult OnGet(int deptId)
+        public DisplayCoursesVM CourseRegVM { get; set; }
+        public IActionResult OnGet()
         {
             var claimIdentity = (ClaimsIdentity)this.User.Identity;
             var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
             Student studentInfo = _studentRepo.GetFisrtOrDefault(s => s.ApplicationUserId == claim.Value);
             if (studentInfo != null)
             {
-                CourseRegVM = new CourseRegViewModel
+                CourseRegVM = new DisplayCoursesVM
                 {
-                    AllCourses = _courseRepo.GetAll(c => c.DeptId == deptId).ToList(),
+                    //AllCourses = _courseRepo.GetAll(c => c.DeptId == studentInfo.DeptId).ToList(),
                     RegisteredCourses = _courseRegRepo.GetAll(c => c.StudentId == studentInfo.Id).ToList(),
-                    StudentInfo = studentInfo
+                    StudentInfo = studentInfo,
+                    TotalUnit=0,
                 };
+                var courseList = new List<Course>();
+                foreach(var course in CourseRegVM.RegisteredCourses)
+                {
+                    var eachCourse = _courseRepo.GetFisrtOrDefault(c => c.Id == course.CourseId);
+                    CourseRegVM.TotalUnit += eachCourse.CourseUnit;
+                    courseList.Add(eachCourse);
+                }
+                CourseRegVM.AllCourses = courseList;
                 return Page();
             }
             return RedirectToPage("Registration");
-        }
-        public IActionResult OnPostAddCourse(int courseId, int studentId)
-        {
-            var courseReg = new CourseRegistered
-            {
-                CourseId = courseId,
-                StudentId = studentId,
-                DateRegistered=DateTime.Today
-            };
-            _courseRegRepo.Add(courseReg);
-            _courseRegRepo.Save();
-            return RedirectToPage("CourseRegistration", new { deptId = CourseRegVM.StudentInfo.DeptId });
-        }
-        public IActionResult OnPostRemoveCourse(int courseId)
-        {
-            var courseDB = _courseRegRepo.GetFisrtOrDefault(u => u.CourseId == courseId);
-            _courseRegRepo.Remove(courseDB);
-            _courseRegRepo.Save();
-            return RedirectToPage("CourseRegistration", new { deptId = CourseRegVM.StudentInfo.DeptId });
         }
     }
 }

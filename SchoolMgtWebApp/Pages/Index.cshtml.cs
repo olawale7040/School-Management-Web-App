@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using SchoolMgtWebApp.Utilitis;
 
 namespace SchoolMgtWebApp.Pages
 {
@@ -17,9 +18,13 @@ namespace SchoolMgtWebApp.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            if (User.IsInRole(SD.AdminRole) || User.IsInRole(SD.StudentRole))
+            {
+                return RedirectToPage("/Students/Registration");
+            }
+            return LocalRedirect("/Identity/Account/Login");
         }
     }
 }

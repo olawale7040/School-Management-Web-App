@@ -18,10 +18,10 @@ namespace SchoolMgtWebApp.Controllers
             _courseRepo = courseRepo;
         }
 
-        [HttpGet("{id:int}")]
-        public IActionResult GetAllCourses()
+        [HttpGet]
+        public IActionResult GetAllCourses(int deptId)
         {
-            var courses = _courseRepo.GetAll();
+            var courses = _courseRepo.GetAll(c=>c.DeptId== deptId);
             return Json(new { data = courses });
         }
         [HttpDelete("{id:int}")]

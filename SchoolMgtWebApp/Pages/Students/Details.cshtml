@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-md-4 col-lg-4 " align="center">
                             <img alt="User Pic" style="width:200px;height:200px;" src="@Model.StudentInfo.Image" class="img-circle img-responsive">
-                            <a  asp-page="CourseRegistration" asp-route-deptId="@Model.StudentInfo.Id" class="btn btn-primary mt-3">Course Registration</a>
+                            <a  asp-page="CourseRegistration" asp-route-deptId="@Model.StudentInfo.DeptId" class="btn btn-primary mt-3">Course Registration</a>
                         </div>
                         <div class=" col-md-8 col-lg-8 ">
                             <table class="table table-user-information">
@@ -35,8 +35,15 @@
                                         <td>@Model.StudentInfo.MatricNo</td>
                                     </tr>
                                     <tr>
-                                    
-                                </tr>
+                                        <td>Email</td>
+                                        <td>@Model.StudentInfo.ApplicationUser.Email</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone Number</td>
+                                        <td>@Model.StudentInfo.ApplicationUser.PhoneNumber</td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

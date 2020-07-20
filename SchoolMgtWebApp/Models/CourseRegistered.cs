@@ -20,8 +20,8 @@ namespace SchoolMgtWebApp.Models
         [Display(Name = "Course")]
         public int CourseId { get; set; }
 
-        [ForeignKey("CourseId")]
-        public virtual Course Course { get; set; }
+       // [ForeignKey("CourseId")]
+       // public virtual Course Course { get; set; }
 
         public string Level { get; set; }
 

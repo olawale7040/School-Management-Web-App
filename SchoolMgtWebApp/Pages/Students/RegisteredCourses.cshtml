@@ -1,0 +1,62 @@
+﻿@page
+@model SchoolMgtWebApp.Pages.Students.RegisteredCoursesModel
+@{
+    ViewData["Title"] = "RegisteredCourses";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Registered Courses</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="table-responsive table-bordered movie-table">
+            @if (Model.CourseRegVM.AllCourses.Count > 0) { 
+            <table class="table movie-table">
+                <thead>
+                    <tr class="movie-table-head">
+                        <th>Course Code</th>
+                        <th>Course Title</th>
+                        <th>Semester</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!--row
+    <tr class="dark-row">
+        <td>Toy Story</td>
+        <td> <span style="color:green;">5</span> /5 </td>
+        <td>40</td>
+        <td>Both</td>
+    </tr>-->
+                    <!--/.row-->
+                    <!--row-->
+                    @foreach (var course in Model.CourseRegVM.AllCourses)
+                    {
+                        <tr class="light-row">
+                            <td>@course.CourseCode</td>
+                            <td> @course.CourseTitle </td>
+                            <td>@course.Semester </td>
+                            <td>@course.CourseUnit</td>
+                        </tr>
+                    }
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>Total Unit</td>
+                    <td>@Model.CourseRegVM.TotalUnit</td>
+                </tr>
+                    <!--/.row-->
+                    <!--row-->
+                </tbody>
+            </table>
+            }
+            else
+            {
+                <h2>You haven't registered any course</h2>
+            }
+        </div>
+    </div>
+</div>
+
+
